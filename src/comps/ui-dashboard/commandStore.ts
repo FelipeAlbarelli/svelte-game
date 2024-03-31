@@ -4,8 +4,26 @@ import type { HslColor } from "../models";
 
 export type CommandState = {
     hsl : HslColor,
-    msgs : Record<string , string | number | null>
+    msgs : Record<string , string | number | null>,
+    cameraProps: {
+        offSetX : number,
+        offSetZ : number,
+        fov : number,
+        zoom : number,
+        positionX : number,
+        positionY : number,
+        positionZ : number,
+    },
 }
+
+let offSetX = -1;
+let offSetZ = 0;
+let fov = 20;
+let positionX = 4
+let zoom = 0.1
+let positionY = 2
+let positionZ = 0
+
 
 const initialState: CommandState = {
     hsl: {
@@ -13,6 +31,7 @@ const initialState: CommandState = {
         s: 60,
         l: 70
     },
+    cameraProps: {fov,offSetX,offSetZ ,positionX,positionY,positionZ , zoom},
     msgs : { }
 }
 

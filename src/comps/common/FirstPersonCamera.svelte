@@ -9,6 +9,10 @@
     const { size ,  } = useThrelte()
 	export let offSetX = -1;
 	export let offSetZ = 0;
+	export let fov = 20;
+	export let positionX = 4
+	export let positionY = 2
+	export let positionZ = 0
 
 
 	interactivity()
@@ -33,7 +37,7 @@
 
 	})
     // $: zoom = $size.width / 32
-    $: zoom = 0.1
+  export let zoom = 0.1
 
 
 
@@ -61,10 +65,10 @@
   >
     <T.PerspectiveCamera
       makeDefault
-	  fov={10}
+	  fov={fov}
 
       {zoom}
-      position={[4, 2, 0]}
+      position={[positionX, positionY, positionZ]}
       on:create={({ ref }) => {
 		cameraRef = ref;
 		ref.lookAt(target.getWorldPosition(new Vector3()))

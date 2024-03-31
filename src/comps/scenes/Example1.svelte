@@ -45,7 +45,16 @@
   })
 </script>
 
-<FirstPersonCamera playerMesh={playerMesh} />
+<FirstPersonCamera 
+  playerMesh={playerMesh} 
+  zoom={$commandStore.cameraProps.zoom}
+  fov={$commandStore.cameraProps.fov}
+  offSetX={$commandStore.cameraProps.offSetX}
+  offSetZ={$commandStore.cameraProps.offSetZ}
+  positionX={$commandStore.cameraProps.positionX}
+  positionY={$commandStore.cameraProps.positionY}
+  positionZ={$commandStore.cameraProps.positionZ}
+  />
 
 <T.DirectionalLight
   position={[0, 10, 10]}
