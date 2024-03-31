@@ -2,15 +2,10 @@
   import { Canvas, useTask } from '@threlte/core'
   import Scene from './Scene.svelte'
   import { World } from '@threlte/rapier'
+  import CommandUi from './ui-dashboard/CommandUI.svelte';
+  import type { HslColor } from './models';
   let size = {width: 600 , height : 400}
   export let aspectRatio = .5
-
-    // camera.aspect = canvas.clientWidth / canvas.clientHeight;
-    // camera.updateProjectionMatrix();
-
-  let clien
-
-
 
 </script>
 <!-- size={{ width, height }} -->
@@ -30,7 +25,7 @@
 </div>
 
 <div class="overlay">
-
+  <CommandUi/>
 </div>
 
 

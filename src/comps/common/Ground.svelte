@@ -2,15 +2,21 @@
   import { T } from '@threlte/core'
   import { AutoColliders } from '@threlte/rapier'
   import { Color } from 'three';
+  import type { HslColor } from '../models';
 
   export let yPosition = -0.5;
 
   export let height = 100
   export let width = 100
 
-  export let hslColor = {h : 0 , s : 100 , l : 50};
+  export let hslColor: HslColor = {h : 0 , s : 100 , l : 50};
 
-  $:color = new Color(`hsl(${hslColor.h}, ${hslColor.s}%, ${hslColor.l}%)`);
+  let color = new Color() 
+  $: {
+    color = new Color(`hsl(${hslColor.h}, ${hslColor.s}%, ${hslColor.l}%)`);
+    console.log(hslColor)
+  }
+  
 
 </script>
 

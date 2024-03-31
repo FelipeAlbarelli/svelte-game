@@ -1,14 +1,22 @@
-<script>
+<script lang="ts">
   import { T, useTask } from '@threlte/core'
   import { interactivity } from '@threlte/extras'
   import { spring } from 'svelte/motion'
   import Ground from '../common/Ground.svelte';
+  import { commandStore } from '../ui-dashboard/commandStore';
+  import type { HslColor } from '../models';
 
   interactivity()
   const scale = spring(1)
   let rotation = 0
   useTask((delta) => {
     rotation += delta
+  })
+
+  let groundColor : HslColor | undefined;
+  commandStore.subscribe( s => {
+    groundColor = s.hsl
+    console.log(groundColor)
   })
 </script>
 
@@ -38,7 +46,7 @@
 </T.Mesh>
 
 <Ground 
-  hslColor={{h: 30 , s : 50 , l : 80}}
+  hslColor={ groundColor }
 />
 
 <!-- <T.Mesh
