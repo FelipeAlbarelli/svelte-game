@@ -57,7 +57,7 @@
     .info {
         display: flex;
         gap: 4px;
-        width: 100px;
+        width: 200px;
         span {
         }
     }

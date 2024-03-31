@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { RigidBody as RapierRigidBody } from '@dimforge/rapier3d-compat'
   import { T, useTask } from '@threlte/core'
-  import { AutoColliders, BasicPlayerController, RigidBody, type CollisionGroupsBitMask } from '@threlte/rapier'
-  import { CapsuleGeometry, Mesh, MeshStandardMaterial, SphereGeometry, Vector3 } from 'three'
+  import { AutoColliders,   BasicPlayerController, RigidBody, type CollisionGroupsBitMask } from '@threlte/rapier'
+  import { BoxGeometry, CapsuleGeometry, Mesh, MeshStandardMaterial, SphereGeometry, Vector3 } from 'three'
 
   export let position: Parameters<Vector3['set']> | undefined = undefined
 
@@ -36,6 +36,10 @@
 
     rigidBody.applyImpulse(f, true)
   })
+
+  let orientation = {
+    position : [0,0,0]
+  }
 </script>
 
 <!-- To detect the groundedness of the player, a collider on group 15 is used -->
@@ -48,6 +52,7 @@
   groundCollisionGroups={collGround}
   playerCollisionGroups={collObjs}
 >
+
   <T.Mesh
     bind:ref={playerMesh}
     position.y={0.9}
@@ -55,7 +60,17 @@
     castShadow
     geometry={new CapsuleGeometry(0.3, 1.8 - 0.3 * 2)}
     material={new MeshStandardMaterial()}
-  />
+  >
+    <T.Mesh
+    position.x={.5}
+    position.z={0}
+    position.y={1}
+    receiveShadow
+    castShadow
+    geometry={new BoxGeometry( 1 ,0.2, 1)}
+    material={new MeshStandardMaterial()}
+    />
+  </T.Mesh>
 </BasicPlayerController>
 
 <T.Group position={[0, 1, -5]}>

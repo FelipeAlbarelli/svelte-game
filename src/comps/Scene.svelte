@@ -5,6 +5,7 @@
 	import { interactivity } from '@threlte/extras';
 	import { changeMsg } from './ui-dashboard/commandStore';
 	import type { ThreeJSEvent } from './models';
+	import { globalStore } from './global';
   export let size = {width: 600 , height : 400}
   const { renderer } = useThrelte()
   export let aspectRatio = .5
@@ -13,12 +14,12 @@
   interactivity()
 	const pointerMove = (e : ThreeJSEvent) => {
 		const { pointer , point } = e;
-		const {  } = pointer
-		const {} = point
-		changeMsg( { 
-			cursorX : pointer.x, 
-			cursorY : pointer.y, 
-		} )
+
+    globalStore.update(prev => ({
+      ...prev,
+      point3D : point,
+      pointer2D : pointer
+    }))
 	}
 
 </script>

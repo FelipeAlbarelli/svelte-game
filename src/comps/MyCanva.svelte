@@ -9,6 +9,8 @@
 	export let aspectRatio = .5
 
 
+	let scenes : '3rdPerson' | 'firstPerson' = '3rdPerson'
+
 
 </script>
 <!-- size={{ width, height }} -->
