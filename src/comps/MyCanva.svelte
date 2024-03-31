@@ -2,9 +2,8 @@
 	import { Canvas, useTask } from '@threlte/core'
 	import Scene from './Scene.svelte'
 	import { World } from '@threlte/rapier'
+	import NavBar from './NavBar.svelte';
 	import CommandUi from './ui-dashboard/CommandUI.svelte';
-	import type { HslColor } from './models';
-	import { changeMsg } from './ui-dashboard/commandStore';
 	let size = {width: 600 , height : 400}
 	export let aspectRatio = .5
 
@@ -31,6 +30,7 @@
 </div>
 
 <div class="overlay">
+	<NavBar />
 	<CommandUi/>
 </div>
 

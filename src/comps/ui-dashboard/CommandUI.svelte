@@ -2,7 +2,7 @@
   import type { HslColor } from '../models';
   import { commandStore , changeMsg, setHsl, allMsgs, type CommandState } from './commandStore';
 
-    let showForm = true;
+    let showForm = false;
     let hue = 30, sat = 100 , ligh = 50;
     $: {
         const hsl : HslColor = {
