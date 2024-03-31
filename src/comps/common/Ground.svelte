@@ -14,7 +14,6 @@
   let color = new Color() 
   $: {
     color = new Color(`hsl(${hslColor.h}, ${hslColor.s}%, ${hslColor.l}%)`);
-    console.log(hslColor)
   }
   
 

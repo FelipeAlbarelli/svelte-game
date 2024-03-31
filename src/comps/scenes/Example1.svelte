@@ -28,7 +28,6 @@
   })
   const { size } = useThrelte()
 
-  interactivity()
   const scale = spring(1)
   let rotation = 0
   useTask((delta) => {
@@ -36,8 +35,12 @@
   })
 
   let groundColor : HslColor | undefined;
-  commandStore.subscribe( s => {
-    groundColor = s.hsl
+  commandStore.subscribe( state => {
+    const {h,l,s} = state.hsl
+    if (h == groundColor?.h && l == groundColor.l && s == groundColor.s) {
+      return
+    }   
+    groundColor = {h,l,s}
     console.log(groundColor)
   })
 </script>
