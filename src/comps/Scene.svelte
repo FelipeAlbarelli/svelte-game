@@ -1,6 +1,7 @@
 <script lang="ts">
   import { T, useThrelte ,useTask ,  } from '@threlte/core'
   import type { PerspectiveCamera } from 'three';
+  import Example1 from './scenes/Example1.svelte';
   export let size = {width: 600 , height : 400}
   const { renderer } = useThrelte()
   export let aspectRatio = .5
@@ -24,7 +25,9 @@
 
 </script>
 
-<T.PerspectiveCamera
+<Example1 />
+
+<!-- <T.PerspectiveCamera
   position={[10, 10, 10]}
   on:create={({ ref }) => {
     ref.lookAt(0, 0, 0);
@@ -34,4 +37,4 @@
 <T.Mesh>
   <T.BoxGeometry args={[1, 1, 1]} />
   <T.MeshBasicMaterial color="red" />
-</T.Mesh>
+</T.Mesh> -->

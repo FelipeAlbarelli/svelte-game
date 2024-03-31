@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "@threlte/core": "^7.2.1",
+    "@threlte/extras": "^8.11.1",
+    "@threlte/rapier": "^2.0.0",
     "@types/three": "^0.163.0",
     "prettier": "^3.2.5",
     "three": "^0.163.0"

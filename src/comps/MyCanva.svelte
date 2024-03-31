@@ -1,6 +1,7 @@
 <script lang="ts">
   import { Canvas, useTask } from '@threlte/core'
   import Scene from './Scene.svelte'
+  import { World } from '@threlte/rapier'
   let size = {width: 600 , height : 400}
   export let aspectRatio = .5
 
@@ -19,10 +20,12 @@
   >
   <Canvas
   >
-    <Scene
-      bind:size
-      bind:aspectRatio
-    />
+    <World>
+      <Scene
+        bind:size
+        bind:aspectRatio
+      />
+    </World>
   </Canvas>
 </div>
 
