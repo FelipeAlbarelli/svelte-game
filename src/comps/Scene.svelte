@@ -2,6 +2,7 @@
   import { T, useThrelte ,useTask ,  } from '@threlte/core'
   import type { PerspectiveCamera } from 'three';
   import Example1 from './scenes/Example1.svelte';
+  import FirstPerson from './scenes/FirstPerson.svelte';
 	import { interactivity } from '@threlte/extras';
 	import { changeMsg } from './ui-dashboard/commandStore';
 	import type { ThreeJSEvent } from './models';
@@ -25,8 +26,14 @@
 </script>
 
 <T.Mesh on:pointermove={pointerMove} > 
+{#if $globalStore.scene == '1rdPerson'}
   
+  <FirstPerson />
+{:else}
+
   <Example1  />
+{/if}
+
 </T.Mesh>
 
 <!-- <T.PerspectiveCamera

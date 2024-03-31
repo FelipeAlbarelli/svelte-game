@@ -8,7 +8,7 @@
   import { AutoColliders, CollisionGroups } from '@threlte/rapier';
   import Player from '../common/Player.svelte';
   import { BoxGeometry, Mesh, MeshStandardMaterial, Vector3 } from 'three';
-  import FirstPersonCamera from '../common/FirstPersonCamera.svelte';
+  import FirstPersonCamera from '../common/Camera3rdPerson.svelte';
 
   let playerMesh: Mesh
   let positionHasBeenSet = false

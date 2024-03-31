@@ -8,7 +8,8 @@
   import { AutoColliders, CollisionGroups } from '@threlte/rapier';
   import Player from '../common/Player.svelte';
   import { BoxGeometry, Mesh, MeshStandardMaterial, Vector3 } from 'three';
-  import FirstPersonCamera from '../common/FirstPersonCamera.svelte';
+	import CameraFirstPerson from '../common/CameraFirstPerson.svelte';
+	import PlayerFirstPerson from '../common/PlayerFirstPerson.svelte';
 
   let playerMesh: Mesh
   let positionHasBeenSet = false
@@ -45,24 +46,18 @@
   })
 </script>
 
-<FirstPersonCamera playerMesh={playerMesh} />
+
 
 <T.DirectionalLight
   position={[0, 10, 10]}
   castShadow
 />
 
-<T.Mesh
-  rotation.y={rotation}
-  position.y={1}
-  scale={$scale}
-  on:pointerenter={() => scale.set(1.5)}
-  on:pointerleave={() => scale.set(1)}
-  castShadow
->
-  <T.BoxGeometry args={[1, 2, 1]} />
-  <T.MeshStandardMaterial color="hotpink" />
-</T.Mesh>
+<CameraFirstPerson
+  fov={50}
+  zoom={0.1}
+  controlerMesh={playerMesh}
+ />
 
 <CollisionGroups groups={[0,15]} >
   <Ground 
@@ -71,10 +66,10 @@
 </CollisionGroups>
 
 <CollisionGroups groups={[0]}>
-  <Player
+  <PlayerFirstPerson
     bind:playerMesh
     collGround={[15]}
-    position={[0, 2, -3]}
+    position={[0, 2, 0]}
   />
   <!-- WALLS -->
   <AutoColliders shape={'cuboid'}>
