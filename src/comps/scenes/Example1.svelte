@@ -8,6 +8,7 @@
   import { AutoColliders, CollisionGroups } from '@threlte/rapier';
   import Player from '../common/Player.svelte';
   import { BoxGeometry, Mesh, MeshStandardMaterial, Vector3 } from 'three';
+  import FirstPersonCamera from '../common/FirstPersonCamera.svelte';
 
   let playerMesh: Mesh
   let positionHasBeenSet = false
@@ -41,13 +42,7 @@
   })
 </script>
 
-<T.PerspectiveCamera
-  makeDefault
-  position={[10, 10, 10]}
-  on:create={({ ref }) => {
-    ref.lookAt(0, 1, 0)
-  }}
-/>
+<FirstPersonCamera playerMesh={playerMesh} />
 
 <T.DirectionalLight
   position={[0, 10, 10]}
