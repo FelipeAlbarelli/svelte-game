@@ -35,7 +35,6 @@
                 ...mouseProps
             }
         }))
-        console.log($commandStore.cameraProps)
     }
 
 

@@ -3,7 +3,7 @@
   import type { PerspectiveCamera } from 'three';
   import Example1 from './scenes/Example1.svelte';
   import FirstPerson from './scenes/FirstPerson.svelte';
-	import { interactivity } from '@threlte/extras';
+	import { Sky, interactivity } from '@threlte/extras';
 	import { changeMsg } from './ui-dashboard/commandStore';
 	import type { ThreeJSEvent } from './models';
 	import { globalStore } from './global';
@@ -24,8 +24,8 @@
 	}
 
 </script>
-
 <T.Mesh on:pointermove={pointerMove} > 
+<Sky elevation={0.5} />
 {#if $globalStore.scene == '1rdPerson'}
   
   <FirstPerson />

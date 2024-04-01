@@ -1,4 +1,4 @@
-import { writable } from "svelte/store";
+import { derived, writable } from "svelte/store";
 import { Vector3, Vector2 } from "three";
 
 export const scenes = [
@@ -19,6 +19,8 @@ export const globalStore = writable<GlobalState>({
     pointer2D :  new Vector2(),
     scene: '1rdPerson'
 })
+
+export const globalPointer = derived( globalStore , ({pointer2D}) => pointer2D)
 
 
 export const setScene = (scene : MyScenes) => {

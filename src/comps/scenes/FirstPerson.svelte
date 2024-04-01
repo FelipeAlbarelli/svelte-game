@@ -36,14 +36,6 @@
   })
 
   let groundColor : HslColor | undefined;
-  commandStore.subscribe( state => {
-    const {h,l,s} = state.hsl
-    if (h == groundColor?.h && l == groundColor.l && s == groundColor.s) {
-      return
-    }   
-    groundColor = {h,l,s}
-    console.log(groundColor)
-  })
 </script>
 
 
@@ -53,11 +45,7 @@
   castShadow
 />
 
-<CameraFirstPerson
-  fov={50}
-  zoom={0.1}
-  controlerMesh={playerMesh}
- />
+
 
 <CollisionGroups groups={[0,15]} >
   <Ground 
@@ -69,8 +57,9 @@
   <PlayerFirstPerson
     bind:playerMesh
     collGround={[15]}
-    position={[0, 2, 0]}
-  />
+  >
+  </PlayerFirstPerson>
+
   <!-- WALLS -->
   <AutoColliders shape={'cuboid'}>
     <T.Mesh

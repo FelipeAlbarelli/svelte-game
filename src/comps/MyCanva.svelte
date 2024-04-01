@@ -21,6 +21,7 @@
 	<Canvas
 	>
 		<World>
+		
 			<Scene
 				bind:size
 				bind:aspectRatio
