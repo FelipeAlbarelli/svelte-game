@@ -102,14 +102,16 @@
 
   const speed = 10;
 
+
+  const moveToX = spring(0)
+  const moveToZ = spring(0)
+
   useTask( delta => {
-    const x = Math.abs(pointer2D.x) > 0.3
-    // $cameraControls?.setTarget(  $posx , 3 , $posz);
 
     $cameraControls?.getPosition(camPos)
     playerPos = playerMesh.getWorldPosition(playerPos)
 
-    // lookAtMesh.getWorldPosition(lookAtPos)
+    lookAtMesh.getWorldPosition(lookAtPos)
     $cameraControls?.getTarget(camTarget)
     $camera.getWorldDirection(camDir)
 
@@ -118,19 +120,25 @@
 
     lookFromMesh.getWorldPosition(moveToPos)
 
-    // $cameraControls?.rotate(
-    //   -delta * horTurnSpeed * calcCamRot(pointer2D.x, minHorCamSens) , 
-    //    delta * verTurnSpeed * calcCamRot(pointer2D.y , minVerCamSens)  , 
-    //   false
-    // )
+    moveToX.set(moveToPos.x)
+    moveToZ.set(moveToPos.z)
+
+    $cameraControls?.rotate(
+      -delta * horTurnSpeed * calcCamRot(pointer2D.x, minHorCamSens) , 
+       delta * verTurnSpeed * calcCamRot(pointer2D.y , minVerCamSens)  , 
+      false
+    )
 
 
     changeMsg({ 
-      posX : `${playerPos.x.toFixed(2)}` ,
-      posZ : `${playerPos.z.toFixed(2)}` ,
-      dirx : `${camDir.x.toFixed(2)}` ,
-      dirz : `${camDir.z.toFixed(2)}` ,
+      moveToX : `${moveToPos.x.toFixed(2)}` ,
+      moveToZ : `${moveToPos.z.toFixed(2)}` ,
+      lookAtX : `${lookAtPos.x.toFixed(2)}` ,
+      lookAtZ : `${lookAtPos.z.toFixed(2)}` ,
+      camX : `${camDir.x.toFixed(2)}` ,
+      camY : `${camDir.x.toFixed(2)}` ,
     })
+    $cameraControls?.setTarget(  lookAtPos.x , 3 , lookAtPos.z);
     
     
     if(pressedW && !pressedS) {
@@ -138,9 +146,9 @@
       posz.update( prev => prev + (camDir.z * speed *delta ))
     }
 
-    if ( camPos.distanceTo(moveToPos) > 1 ) {
-      $cameraControls?.moveTo(...moveToPos.toArray() ,  true)
-    }
+    // if ( camPos.distanceTo(moveToPos) > 1 ) {
+      // $cameraControls?.moveTo(...moveToPos.toArray() ,  true)
+    // }
 
 
   })
@@ -163,7 +171,7 @@
     <!-- target -->
     <T.Mesh
       position.x={0}
-      position.z={2}
+      position.z={1}
       bind:ref={lookAtMesh}
       
       position.y={0}
@@ -172,8 +180,8 @@
     />
     <T.Mesh
       position.x={0}
-      position.y={2}
-      position.z={-10}
+      position.y={0}
+      position.z={-1}
       bind:ref={lookFromMesh}
       geometry={new BoxGeometry( 0.2 ,0.2, 0.2)}
       material={new MeshStandardMaterial({transparent: true , opacity: 0.5 , color : 'green'})}
@@ -202,8 +210,8 @@
 <CameraFirstPerson
       fov={50}
       zoom={1}
-      positionX={1}
-      positionY={1}
-      positionZ={1}
+      positionX={$moveToX}
+      positionY={0}
+      positionZ={$moveToZ}
       controlerMesh={lookFromMesh}
 />

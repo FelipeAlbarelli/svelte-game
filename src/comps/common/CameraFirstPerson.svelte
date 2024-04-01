@@ -52,7 +52,8 @@
 
 <T.PerspectiveCamera
   makeDefault
-  position={[0, 0, 0]}
+  position.x={positionX}
+  position.z={positionZ}
   on:create={({ ref }) => {
     ref.lookAt(new Vector3(0,0,-1))
   }}
